@@ -17,3 +17,19 @@ mongoose.connect(process.env.DATABASE, {
     useCreateIndex: true,
 }).then(() => console.log(`Connected to database`))
 
+//middlewares
+app.use(cors())
+app.use(bodyParser.json())
+app.use(cookieParser())
+app.use(morgan('dev'))
+app.use(expressValidator())
+
+app.get('/', (req, res) => {
+    res.json("Welcome to TheSoftShopAPI")
+})
+
+//listen to server
+const port = process.env.PORT || 8000
+app.listen(port, (port) => {
+    console.log(`Listening to server on ${port}`)
+})
