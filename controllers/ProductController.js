@@ -56,4 +56,34 @@ exports.update = (req, res) => {
     const product = req.product
     product.ProductName = req.body.ProductName
     product.Price = req.body.Price
+
+    product.save((err, data) => {
+        if(err) {
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        res.json({
+            success: true,
+            message: "Product modified successfully",
+            product: data
+        })
+    })
+}
+
+exports.delete = (req, res) => {
+    const product = req.product
+    product.remove((err, data) => {
+        if(err) {
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        res.json({
+            success: true,
+            message: "Product deleted successfully"
+        })
+    })
 }
