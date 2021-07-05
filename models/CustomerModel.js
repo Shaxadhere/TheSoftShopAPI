@@ -27,7 +27,7 @@ const customerSchema = new mongoose.Schema({
     },
     BillingAddress: {
         type: String,
-        require: fasle,
+        require: false,
         trim: true,
         maxlength: 500        
     },
@@ -55,7 +55,7 @@ customerSchema.virtual('password')
     return this._password
 })
 
-userSchema.methods = {
+customerSchema.methods = {
     authentiate: function(plainText){
         return this.encryptPassword(plainText) === this.HashedPassword
     },
