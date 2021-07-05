@@ -7,6 +7,11 @@ const cookieParser = require('cookie-parser')
 const expressValidator = require('express-validator')
 require('dotenv').config()
 const categoryRoutes = require('./routes/CategoryRoutes')
+const colorRoutes = require('./routes/ColorRoutes')
+const customerRoutes = require('./routes/CustomerRoutes')
+const inventoryRoutes = require('./routes/InventoryRoutes')
+const sizeRoutes = require('./routes/SizeRoutes')
+const userRoutes = require('./routes/UserRoutes')
 
 //app
 const app = express()
@@ -30,6 +35,13 @@ app.get('/', (req, res) => {
     res.json("Welcome to TheSoftShopAPI")
 })
 app.use('/category', categoryRoutes)
+app.use('/color', colorRoutes)
+app.use('/customer', customerRoutes)
+app.use('/inventory', inventoryRoutes)
+app.use('/product', productRoutes)
+app.use('/inventory', inventoryRoutes)
+app.use('/size', sizeRoutes)
+app.use('/user', userRoutes)
 
 //listen to server
 const port = process.env.PORT || 8000
