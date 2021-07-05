@@ -58,7 +58,7 @@ exports.update = (req, res) => {
     
 }
 
-exports.delete = (req, res) => {
+exports.remove = (req, res) => {
     const customer = req.customer
     customer.remove((err, data) => {
         if(err){

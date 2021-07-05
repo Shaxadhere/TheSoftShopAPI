@@ -71,7 +71,7 @@ exports.update = (req, res) => {
     })
 }
 
-exports.delete = (req, res) => {
+exports.remove = (req, res) => {
     const color = req.color
     color.remove((err, data) => {
         if(err){

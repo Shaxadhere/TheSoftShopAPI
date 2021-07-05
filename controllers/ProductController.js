@@ -72,7 +72,7 @@ exports.update = (req, res) => {
     })
 }
 
-exports.delete = (req, res) => {
+exports.remove = (req, res) => {
     const product = req.product
     product.remove((err, data) => {
         if(err) {
