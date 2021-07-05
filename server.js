@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const expressValidator = require('express-validator')
 require('dotenv').config()
+const categoryRoutes = require('./routes/CategoryRoutes')
 
 //app
 const app = express()
@@ -24,9 +25,11 @@ app.use(cookieParser())
 app.use(morgan('dev'))
 app.use(expressValidator())
 
+//routes
 app.get('/', (req, res) => {
     res.json("Welcome to TheSoftShopAPI")
 })
+app.use('/category', categoryRoutes)
 
 //listen to server
 const port = process.env.PORT || 8000
