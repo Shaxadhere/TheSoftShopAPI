@@ -25,6 +25,7 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    Salt: String,
     BillingAddress: {
         type: String,
         require: false,
