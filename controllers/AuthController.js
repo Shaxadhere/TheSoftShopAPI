@@ -43,5 +43,19 @@ exports.signinCustomer = (req, res) => {
             _id: user.id
         }, process.env.JWT_SECRET)
 
+        res.cookie('t', token, {
+            expire: new Date() + 9999
+        })
+        const {_id, FullName, Email} = user
+        res.json({
+            success: true,
+            token: token,
+            user: {
+                _id,
+                FullName,
+                Email
+            }
+        })
+
     })
 }
