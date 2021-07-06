@@ -40,7 +40,7 @@ exports.signinCustomer = (req, res) => {
             })
         }
         const token = jwt.sign({
-            _id: user.id
+            _id: user._id
         }, process.env.JWT_SECRET)
 
         res.cookie('t', token, {
@@ -57,5 +57,43 @@ exports.signinCustomer = (req, res) => {
             }
         })
 
+    })
+}
+
+exports.signin = (req, res) => {
+    const {Email, Password} = req.body
+    Customer.findOne({
+        Email
+    }, (err, customer) => {
+        if(err || !customer){
+            return res.status(400).json({
+                success: false,
+                error: "Customer with this email address was not found"
+            })
+        }
+        if(!customer.authenticate(password)){
+            return res.status(400).json({
+                success: false,
+                error: "Invalid password"
+            })
+        }
+        const token = jwt.sign({
+            _id: customer._id
+        }, process.env.JWT_SECRET)
+
+        res.cookie('t', token, {
+            expire: new Date() + 9999
+        })
+
+        const {_id, FullName, Email} = customer
+        res.json({
+            success: true,
+            token: token,
+            user: {
+                _id,
+                FullName,
+                Email
+            }
+        })
     })
 }
