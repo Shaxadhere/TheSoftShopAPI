@@ -56,6 +56,12 @@ exports.update = (req, res) => {
     const product = req.product
     product.ProductName = req.body.ProductName
     product.Price = req.body.Price
+    product.ProductSlug = req.body.ProductSlug
+    product.ProductDescription = req.body.ProductDescription
+    product.Categories = req.body.Categories
+    product.ProductTags = req.body.ProductTags
+    product.ProductImages = req.body.ProductImages
+    
 
     product.save((err, data) => {
         if(err) {
