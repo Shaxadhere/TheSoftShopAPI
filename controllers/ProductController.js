@@ -61,7 +61,6 @@ exports.update = (req, res) => {
     product.Categories = req.body.Categories
     product.ProductTags = req.body.ProductTags
     product.ProductImages = req.body.ProductImages
-    
 
     product.save((err, data) => {
         if(err) {
